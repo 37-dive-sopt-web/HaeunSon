@@ -17,7 +17,7 @@ a {
 
 /* 헤더 섹션 */
 #header {
-    width: 100%;
+    width: 100dvw;
     height: 75px;
     display: flex;
     align-items: center;
@@ -70,6 +70,7 @@ a {
 #container {
     height: auto;
     display: flex;
+    gap: 30px;
     padding: 0 3vw;
 }
 
@@ -87,6 +88,8 @@ a {
 }
 .lnb-li {
     padding: 10px 15px;
+    /* :hover에 적용 시 hover 상태에서 벗어날 때 부드럽게 전환되지 않아 밖으로 뺐습니다. */
+    /* 혹시 더 좋은 방법이 있다면 알려주세요. */
     transition: 0.3s;
 
     &:hover {
@@ -106,6 +109,58 @@ a {
 #main {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     height: 100vh;
 }
 
+/* 히어로 섹션 */
+#introduce {
+    padding: 50px;
+    margin: 50px 0;
+    background-color: #b3fcff;
+    border-radius: 20px;
+    display: flex;
+    gap: 40px;
+}
+.profile-big {
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 10px 15px #959da5;
+    }
+}
+.introduce-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    p {
+        color: #666;
+        font-size: 14px;
+    }
+}
+.introduce-btn-wrap {
+    display: flex;
+    gap: 10px;
+}
+.introduce-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #71d5d8;
+    font-size: 14px;
+    transition: 0.3s;
+
+    &:first-child {
+        background-color: #89e9ec;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        transform-origin: bottom;
+    }
+}
