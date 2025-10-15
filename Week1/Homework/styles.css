@@ -108,6 +108,7 @@ a {
 /* 메인 */
 #main {
     display: flex;
+    gap: 100px;
     flex-direction: column;
     flex-grow: 1;
     height: 100vh;
@@ -116,7 +117,7 @@ a {
 /* 히어로 섹션 */
 #introduce {
     padding: 50px;
-    margin: 50px 0;
+    margin-top: 50px;
     background-color: #b3fcff;
     border-radius: 20px;
     display: flex;
@@ -163,4 +164,23 @@ a {
         transform: scale(1.1);
         transform-origin: bottom;
     }
+}
+
+/* 스킬 태그 섹션 */
+#skill {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.skill-tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skill-tag {
+    padding: 8px 15px;
+    border-radius: 15px;
+    color: #333;
+    font-size: 14px;
+    background-color: #b3fcff;
 }
