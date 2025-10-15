@@ -24,6 +24,7 @@ a {
     background-color: #ffffff;
     position: fixed;
     top: 0;
+    z-index: 1;
 
     > * {
         flex: 1;
@@ -76,7 +77,8 @@ a {
 
 /* 네비게이션 */
 #lnb {
-    width: 10vw;
+    width: 40vw;
+    min-width: 100px;
     height: auto;
     padding: 20px 15px;
     border-radius: 15px;
@@ -107,11 +109,11 @@ a {
 
 /* 메인 */
 #main {
+    height: 100dvh;
     display: flex;
     gap: 100px;
     flex-direction: column;
     flex-grow: 1;
-    height: 100vh;
     overflow: scroll;
     &::-webkit-scrollbar {
         display: none;
@@ -307,4 +309,27 @@ a {
     100% {
         transform: translateX(-50%);
     }
+}
+
+/* 한마디 */
+#comment {
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #b3fcff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+        color: #333;
+        font-size: 14px;
+    }
+}
+
+/* footer */
+#footer {
+    margin-top: 50px;
+    padding: 15px 0;
+    background-color: #deffd1;
+    text-align: center;
 }
