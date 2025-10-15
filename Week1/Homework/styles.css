@@ -112,6 +112,10 @@ a {
     flex-direction: column;
     flex-grow: 1;
     height: 100vh;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 /* 히어로 섹션 */
@@ -183,4 +187,78 @@ a {
     color: #333;
     font-size: 14px;
     background-color: #b3fcff;
+}
+
+/* 카드 섹션 */
+#my-photo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.card-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2dvw;
+    width: 100%;
+}
+.card {
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: 0.3s;
+
+    > img {
+        width: 100%;
+        height: 30dvh;
+        object-fit: cover;
+    }
+
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px #959da5;
+    }
+}
+.card-content {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.card-title {
+    font-weight: bold;
+}
+.card-info {
+    font-size: 14px;
+    color: #666;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+.card-heart-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #b3fcff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+        width: 50%;
+        height: 50%;
+    }
+
+    #heart-hover {
+        display: none;
+    }
+    &:hover {
+        background-color: #d7feff;
+    }
+    &:hover #heart-unhover {
+        display: none;
+    }
+    &:hover #heart-hover {
+        display: block;
+    }
 }
