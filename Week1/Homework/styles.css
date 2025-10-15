@@ -262,3 +262,49 @@ a {
         display: block;
     }
 }
+
+/* 사진첩 */
+#photo-album {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.infinite-banner {
+    height: 25dvh;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+.banner-container {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+    will-change: transform;
+    animation: scroll 10s linear infinite;
+
+    &:hover {
+        animation-play-state: paused;
+    }
+
+    img {
+        width: 250px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+        flex-shrink: 0;
+        transition: 0.3s;
+    }
+    img:hover {
+        transform: scale(1.1);
+    }
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
