@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     background-color: #ffeded;
 }
@@ -13,6 +16,9 @@ ul {
 a {
     text-decoration: none;
     color: #333;
+}
+section {
+    scroll-margin-top: 90px;
 }
 
 /* 헤더 섹션 */
