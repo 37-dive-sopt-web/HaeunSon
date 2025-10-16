@@ -9,21 +9,21 @@
 <body>
     <!-- 헤더 섹션 -->
     <header id="header">
-        <div id="headerProfile">
-            <img class="profile profile-small" src="./images/img-profile-small.jpg" alt="어린 아이가 입을 벌리고 있는 모습" />
+        <div class="header__profile">
+            <img src="./images/img-profile-small.jpg" alt="어린 아이가 입을 벌리고 있는 모습" />
         </div>
-        <div id="headerInfo">
+        <div class="header__content">
             <h3>손하은</h3>
             <p>엄마는~ 웹계인~~</p>
         </div>
-        <nav id="headerNav">
+        <nav class="header__nav">
             <a href="https://github.com/sonnnnhe" target="_blank">
-                <div class="header-btn">
+                <div class="header__btn">
                     <img src="./images/ic-github.png" alt="github 로고" />
                 </div>
             </a>
             <a href="https://www.instagram.com/5__0n1e" target="_blank">
-                <div class="header-btn">
+                <div class="header__btn">
                     <img src="./images/ic-instagram.png" alt="instagram 로고" />
                 </div>
             </a>
@@ -34,154 +34,155 @@
         <!-- 네비게이션 -->
         <nav id="lnb">
             <ul>
-                <li class="lnb-li"><a href="#introduce">소개</a></li>
-                <li class="lnb-li"><a href="#skill">나의 스킬</a></li>
-                <li class="lnb-li"><a href="#my-photo">나의 모습</a></li>
-                <li class="lnb-li"><a href="#photo-album">사진첩</a></li>
-                <li class="lnb-li"><a href="#comment">한마디</a></li>
+                <li class="lnb__item"><a href="#hero">소개</a></li>
+                <li class="lnb__item"><a href="#skill">나의 스킬</a></li>
+                <li class="lnb__item"><a href="#card">나의 모습</a></li>
+                <li class="lnb__item"><a href="#album">사진첩</a></li>
+                <li class="lnb__item"><a href="#comment">한마디</a></li>
             </ul>
         </nav>
         <main id="main">
             <!-- 히어로 섹션 -->
-            <section id="introduce">
-                <img class="profile profile-big" src="./images/img-profile-big.jpg" alt="단발을 한 여성 사진" />
-                <div class="introduce-info">
+            <section id="hero">
+                <img class="hero__profile" src="./images/img-profile-big.jpg" alt="단발을 한 여성 사진" />
+                <div class="hero__content">
                     <h1>37기 DIVE SOPT Web YB 손하은입니다</h1>
                     <p>코드 리뷰 많이많이 받고 싶어요 부족하지만 잘 부탁드립니다</p>
-                    <div class="introduce-btn-wrap">
-                        <div class="introduce-btn">환영해요</div>
-                        <div class="introduce-btn">응원해요</div>
+                    <div class="hero__btn-wrapper">
+                        <div class="hero__btn">환영해요</div>
+                        <div class="hero__btn">응원해요</div>
                     </div>
                 </div>
             </section>
             <!-- 스킬 태그 섹션 -->
             <section id="skill">
                 <h2>나의 스킬과 관심사</h2>
-                <div class="skill-tag-wrap">
-                    <div class="skill-tag">HTML</div>
-                    <div class="skill-tag">CSS</div>
-                    <div class="skill-tag">React</div>
-                    <div class="skill-tag">TypeScript</div>
-                    <div class="skill-tag">JavaScript</div>
-                    <div class="skill-tag">집순이</div>
-                    <div class="skill-tag">고양이 좋아해요</div>
-                    <div class="skill-tag">아디다스 좋아해요</div>
+                <div class="skill__tag-wrapper">
+                    <div class="skill__tag">HTML</div>
+                    <div class="skill__tag">CSS</div>
+                    <div class="skill__tag">React</div>
+                    <div class="skill__tag">TypeScript</div>
+                    <div class="skill__tag">JavaScript</div>
+                    <div class="skill__tag">집순이</div>
+                    <div class="skill__tag">고양이 좋아해요</div>
+                    <div class="skill__tag">아디다스 좋아해요</div>
                 </div>
             </section>
-            <section id="my-photo">
+            <!-- 카드 섹션 -->
+            <section id="card">
                 <h2>나의 모습</h2>
-                <div class="card-wrap">
-                    <article class="card">
+                <div class="card__container">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-01.jpg" alt="생일 축하를 받고 있는 여성" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">조촐한 생일 파티</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">조촐한 생일 파티</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">시험 기간에 공부하다가 불려갔어요</p>
+                            <p class="card__info">시험 기간에 공부하다가 불려갔어요</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-02.jpg" alt="단발을 한 여성의 셀카" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">단발</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">단발</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">헤어지면 단발한다던데... x100번 들었던 날</p>
+                            <p class="card__info">헤어지면 단발한다던데... x100번 들었던 날</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-03.jpg" alt="회색 바지를 입고 사과 크록스를 신은 하반신 모습" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">사과 크록스</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">사과 크록스</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">부트캠프 출근할 때 신었더니 모두에게 외면 받았습니다</p>
+                            <p class="card__info">부트캠프 출근할 때 신었더니 모두에게 외면 받았습니다</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-04.jpg" alt="아이스티가 담긴 잔을 들고 있는 여성" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">mz가 되고 싶어</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">mz가 되고 싶어</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">릴스에서 봤던 느좋 사진 찍는 법 따라했지만 그냥 잔 들고 사진 찍은 사람.jpg</p>
+                            <p class="card__info">릴스에서 봤던 느좋 사진 찍는 법 따라했지만 그냥 잔 들고 사진 찍은 사람.jpg</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-05.jpg" alt="돌로 만든 발바닥 젤리가 얹어져 있는 손" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">젤리</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">젤리</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">바닷가 가서 돌로 발바닥 젤리 만들었어요</p>
+                            <p class="card__info">바닷가 가서 돌로 발바닥 젤리 만들었어요</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-06.jpg" alt="긴 막대기를 들고 있는 여성의 옆모습" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">?</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">?</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">뭘 적고 있을까요?</p>
+                            <p class="card__info">뭘 적고 있을까요?</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-07.jpg" alt="네이버 오늘의 운세 캡쳐 사진" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">오늘의 운세</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">오늘의 운세</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">네이버 오늘의 운세 보는 걸 조아합니다. 솝트 면접 때 운세가 아주 좋았다는 사실 ^_^</p>
+                            <p class="card__info">네이버 오늘의 운세 보는 걸 조아합니다. 솝트 면접 때 운세가 아주 좋았다는 사실 ^_^</p>
                         </section>
                     </article>
-                    <article class="card">
+                    <article class="card__wrapper">
                         <img src="./images/img-me-08.jpg" alt="인생네컷 사진" />
-                        <section class="card-content">
-                            <header class="card-header">
-                                <p class="card-title">인하네컷</p>
-                                <div class="card-heart-icon">
-                                    <img id="heart-unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
-                                    <img id="heart-hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
+                        <section class="card__content">
+                            <header class="card__header">
+                                <p class="card__title">인하네컷</p>
+                                <div class="card__heart-icon">
+                                    <img id="card__heart--unhover" src="./images/ic-heart-unhover.png" alt="하트 아이콘" />
+                                    <img id="card__heart--hover" src="./images/ic-heart-hover.png" alt="하트 아이콘" />
                                 </div>
                             </header>
-                            <p class="card-info">우리 학교 네컷 프레임 예쁘죠</p>
+                            <p class="card__info">우리 학교 네컷 프레임 예쁘죠</p>
                         </section>
                     </article>
                 </div>
             </section>
             <!-- 사진첩 -->
-            <section id="photo-album">
+            <section id="album">
                 <h2>사진첩</h2>
-                <div class="infinite-banner">
-                    <div class="banner-container">
+                <div class="album__carousel">
+                    <div class="album__group">
                         <img src="./images/img-me-01.jpg" alt="생일 축하를 받고 있는 여성" />
                         <img src="./images/img-me-02.jpg" alt="단발을 한 여성의 셀카" />
                         <img src="./images/img-me-03.jpg" alt="회색 바지를 입고 사과 크록스를 신은 하반신 모습" />

@@ -2,9 +2,6 @@
     margin: 0;
     padding: 0;
 }
-html {
-    scroll-behavior: smooth;
-}
 body {
     background-color: #ffeded;
 }
@@ -23,78 +20,68 @@ section {
 
 /* 헤더 섹션 */
 #header {
-    width: 100dvw;
-    height: 75px;
     display: flex;
     align-items: center;
+    width: 100dvw;
+    height: 75px;
     background-color: #ffffff;
     position: fixed;
     top: 0;
     z-index: 1;
-
-    > * {
-        flex: 1;
-    }
 }
-
-#headerProfile {
+#header > * {
+    flex: 1;
+}
+.header__profile {
     display: flex;
     justify-content: center;
 }
-.profile {
+.header__profile > img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
-.profile-small {
-    width: 50px;
-    height: 50px;
-}
-
-#headerInfo {
+.header__content {
     text-align: center;
-
-    p {
-        color: #666;
-        font-size: 0.8rem;
-    }
 }
-
-#headerNav {
+.header__content p {
+    color: #666;
+    font-size: 13px;
+}
+.header__nav {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
-.header-btn {
+.header__btn {
     display: flex;
     justify-content: center;
     width: 30px;
     height: 30px;
-    border-radius: 50%;
     padding: 10px;
+    border-radius: 50%;
     background-color: #b3fcff;
 }
 
-#container {
-    height: auto;
+#container { /* 헤더를 제외한 부분을 감싸는 태그의 id */
+    padding: 0 3vw;
     display: flex;
     gap: 30px;
-    padding: 0 3vw;
 }
 
 /* 네비게이션 */
 #lnb {
+    align-self: flex-start;
     width: 40vw;
     min-width: 100px;
-    height: auto;
     padding: 20px 15px;
     border-radius: 15px;
     background-color: #ffffff;
-    align-self: flex-start;
     position: sticky;
     top: 100px;
-    left: 3vw;
 }
-.lnb-li {
+.lnb__item {
     padding: 10px 15px;
     /* :hover에 적용 시 hover 상태에서 벗어날 때 부드럽게 전환되지 않아 밖으로 뺐습니다. */
     /* 혹시 더 좋은 방법이 있다면 알려주세요. */
@@ -115,67 +102,66 @@ section {
 
 /* 메인 */
 #main {
-    height: 100dvh;
-    padding-bottom: 200px;
     display: flex;
-    gap: 100px;
     flex-direction: column;
-    flex-grow: 1;
+    gap: 100px;
+
     overflow: scroll;
+    scroll-behavior: smooth;
     &::-webkit-scrollbar {
         display: none;
     }
 }
 
 /* 히어로 섹션 */
-#introduce {
-    padding: 50px;
-    margin-top: 50px;
-    background-color: #b3fcff;
-    border-radius: 20px;
+#hero {
     display: flex;
     gap: 40px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 20px;
+    background-color: #b3fcff;
 }
-.profile-big {
+.hero__profile {
+    flex-shrink: 0;
     width: 180px;
     height: 180px;
-    flex-shrink: 0;
-    transition: 0.3s;
+    border-radius: 50%;
+    object-fit: cover;
 
+    transition: 0.3s;
     &:hover {
         transform: scale(1.1);
         box-shadow: 0px 10px 15px #959da5;
     }
 }
-.introduce-info {
+.hero__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 20px;
-
-    p {
-        color: #666;
-        font-size: 14px;
-    }
 }
-.introduce-btn-wrap {
+.hero__content p {
+    color: #666;
+    font-size: 14px;
+}
+.hero__btn-wrapper {
     display: flex;
     gap: 10px;
 }
-.introduce-btn {
+.hero__btn {
     padding: 10px 20px;
     border-radius: 20px;
     background-color: #71d5d8;
     font-size: 14px;
+
     transition: 0.3s;
-
-    &:first-child {
-        background-color: #89e9ec;
-    }
-
     &:hover {
         transform: scale(1.1);
         transform-origin: bottom;
+    }
+    &:first-child {
+        background-color: #89e9ec;
     }
 }
 
@@ -185,127 +171,121 @@ section {
     flex-direction: column;
     gap: 10px;
 }
-.skill-tag-wrap {
+.skill__tag-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
-.skill-tag {
+.skill__tag {
     padding: 8px 15px;
     border-radius: 15px;
+    background-color: #b3fcff;
     color: #333;
     font-size: 14px;
-    background-color: #b3fcff;
 }
 
 /* 카드 섹션 */
-#my-photo {
+#card {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.card-wrap {
+.card__container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2dvw;
-    width: 100%;
 }
-.card {
+.card__wrapper {
     border-radius: 20px;
     background-color: #ffffff;
     overflow: hidden;
+
     transition: 0.3s;
-
-    > img {
-        width: 100%;
-        height: 30dvh;
-        object-fit: cover;
-    }
-
     &:hover {
         transform: translateY(-10px);
         box-shadow: 0 4px 8px #959da5;
     }
 }
-.card-content {
-    padding: 15px 20px;
+.card__wrapper > img {
+    width: 100%;
+    height: 30dvh;
+    object-fit: cover;
+}
+.card__content {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    padding: 15px 20px;
 }
-.card-title {
-    font-weight: bold;
-}
-.card-info {
-    font-size: 14px;
-    color: #666;
-}
-.card-header {
+.card__header {
     display: flex;
     justify-content: space-between;
 }
-.card-heart-icon {
+.card__title {
+    font-weight: bold;
+}
+.card__heart-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #b3fcff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    img {
-        width: 50%;
-        height: 50%;
-    }
 
-    #heart-hover {
-        display: none;
-    }
     &:hover {
         background-color: #d7feff;
     }
-    &:hover #heart-unhover {
+    &:hover #card__heart--unhover {
         display: none;
     }
-    &:hover #heart-hover {
+    &:hover #card__heart--hover {
         display: block;
     }
 }
+.card__heart-icon img {
+    width: 50%;
+}
+#card__heart--hover {
+    display: none;
+}
+.card__info {
+    font-size: 14px;
+    color: #666;
+}
 
 /* 사진첩 */
-#photo-album {
+#album {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.infinite-banner {
+.album__carousel {
     height: 25dvh;
     padding: 20px;
     border-radius: 20px;
     background-color: #ffffff;
     overflow: hidden;
 }
-.banner-container {
-    width: max-content;
-    height: 100%;
+.album__group {
     display: flex;
     gap: 10px;
+    width: max-content;
+    height: 100%;
+
     will-change: transform;
     animation: scroll 10s linear infinite;
-
     &:hover {
         animation-play-state: paused;
     }
+}
+.album__group img {
+    width: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
 
-    img {
-        width: 250px;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-        flex-shrink: 0;
-        transition: 0.3s;
-    }
-    img:hover {
+    &:hover {
         transform: scale(1.1);
     }
 }
@@ -320,22 +300,21 @@ section {
 
 /* 한마디 */
 #comment {
-    padding: 40px;
-    border-radius: 20px;
-    background-color: #b3fcff;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    p {
-        color: #333;
-        font-size: 14px;
-    }
+    padding: 40px;
+    margin-bottom: 500px;  /* 앵커 태그 작동 확인을 위한 마진 */
+    border-radius: 20px;
+    background-color: #b3fcff;
+}
+#comment p {
+    color: #333;
+    font-size: 14px;
 }
 
 /* footer */
 #footer {
-    margin-top: 50px;
     padding: 15px 0;
     background-color: #deffd1;
     text-align: center;
