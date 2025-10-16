@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #ffeded;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+section {
+    scroll-margin-top: 90px;
+}
+
+/* 헤더 섹션 */
+#header {
+    display: flex;
+    align-items: center;
+    width: 100dvw;
+    height: 75px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+#header > * {
+    flex: 1;
+}
+.header__profile {
+    display: flex;
+    justify-content: center;
+}
+.header__profile > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.header__content {
+    text-align: center;
+}
+.header__content p {
+    color: #666;
+    font-size: 13px;
+}
+.header__nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.header__btn {
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #b3fcff;
+}
+
+#container { /* 헤더를 제외한 부분을 감싸는 태그의 id */
+    padding: 0 3vw;
+    display: flex;
+    gap: 30px;
+}
+
+/* 네비게이션 */
+#lnb {
+    align-self: flex-start;
+    width: 40vw;
+    min-width: 100px;
+    padding: 20px 15px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 100px;
+}
+.lnb__item {
+    padding: 10px 15px;
+    /* :hover에 적용 시 hover 상태에서 벗어날 때 부드럽게 전환되지 않아 밖으로 뺐습니다. */
+    /* 혹시 더 좋은 방법이 있다면 알려주세요. */
+    transition: 0.3s;
+
+    &:hover {
+        background-color: #b3fcff;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    &:first-child:hover {
+        border-radius: 20px 20px 5px 5px;
+    }
+    &:last-child:hover {
+        border-radius: 5px 5px 20px 20px;
+    }
+}
+
+/* 메인 */
+#main {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+
+    overflow: scroll;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* 히어로 섹션 */
+#hero {
+    display: flex;
+    gap: 40px;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 20px;
+    background-color: #b3fcff;
+}
+.hero__profile {
+    flex-shrink: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 10px 15px #959da5;
+    }
+}
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.hero__content p {
+    color: #666;
+    font-size: 14px;
+}
+.hero__btn-wrapper {
+    display: flex;
+    gap: 10px;
+}
+.hero__btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #71d5d8;
+    font-size: 14px;
+
+    transition: 0.3s;
+    &:hover {
+        transform: scale(1.1);
+        transform-origin: bottom;
+    }
+    &:first-child {
+        background-color: #89e9ec;
+    }
+}
+
+/* 스킬 태그 섹션 */
+#skill {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.skill__tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.skill__tag {
+    padding: 8px 15px;
+    border-radius: 15px;
+    background-color: #b3fcff;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 카드 섹션 */
+#card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.card__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2dvw;
+}
+.card__wrapper {
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+
+    transition: 0.3s;
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 8px #959da5;
+    }
+}
+.card__wrapper > img {
+    width: 100%;
+    height: 30dvh;
+    object-fit: cover;
+}
+.card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+}
+.card__header {
+    display: flex;
+    justify-content: space-between;
+}
+.card__title {
+    font-weight: bold;
+}
+.card__heart-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #b3fcff;
+
+    &:hover {
+        background-color: #d7feff;
+    }
+    &:hover #card__heart--unhover {
+        display: none;
+    }
+    &:hover #card__heart--hover {
+        display: block;
+    }
+}
+.card__heart-icon img {
+    width: 50%;
+}
+#card__heart--hover {
+    display: none;
+}
+.card__info {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 사진첩 */
+#album {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.album__carousel {
+    height: 25dvh;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+.album__group {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    height: 100%;
+
+    will-change: transform;
+    animation: scroll 10s linear infinite;
+    &:hover {
+        animation-play-state: paused;
+    }
+}
+.album__group img {
+    width: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* 한마디 */
+#comment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 40px;
+    margin-bottom: 500px;  /* 앵커 태그 작동 확인을 위한 마진 */
+    border-radius: 20px;
+    background-color: #b3fcff;
+}
+#comment p {
+    color: #333;
+    font-size: 14px;
+}
+
+/* footer */
+#footer {
+    padding: 15px 0;
+    background-color: #deffd1;
+    text-align: center;
+}
