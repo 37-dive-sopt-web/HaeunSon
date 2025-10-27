@@ -7,8 +7,6 @@ body {
 }
 ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 a {
     text-decoration: none;
@@ -19,7 +17,7 @@ section {
 }
 
 /* 헤더 섹션 */
-#header {
+.header {
     display: flex;
     align-items: center;
     width: 100dvw;
@@ -29,14 +27,14 @@ section {
     top: 0;
     z-index: 1;
 }
-#header > * {
+.header > * {
     flex: 1;
 }
-.header__profile {
+.header__profile-area {
     display: flex;
     justify-content: center;
 }
-.header__profile > img {
+.header__profile-area > img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -64,14 +62,14 @@ section {
     background-color: #b3fcff;
 }
 
-#container { /* 헤더를 제외한 부분을 감싸는 태그의 id */
+.content-layout { /* 헤더를 제외한 부분을 감싸는 태그의 id */
     padding: 0 3vw;
     display: flex;
     gap: 30px;
 }
 
 /* 네비게이션 */
-#lnb {
+.content-layout__lnb {
     align-self: flex-start;
     width: 40vw;
     min-width: 100px;
@@ -101,7 +99,7 @@ section {
 }
 
 /* 메인 */
-#main {
+.content-layout__main {
     display: flex;
     flex-direction: column;
     gap: 100px;
@@ -114,7 +112,7 @@ section {
 }
 
 /* 히어로 섹션 */
-#hero {
+.hero {
     display: flex;
     gap: 40px;
     padding: 50px;
@@ -166,7 +164,7 @@ section {
 }
 
 /* 스킬 태그 섹션 */
-#skill {
+.skill {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -185,7 +183,7 @@ section {
 }
 
 /* 카드 섹션 */
-#card {
+.card {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -223,6 +221,7 @@ section {
 }
 .card__title {
     font-weight: bold;
+    font-size: 16px;
 }
 .card__heart-icon {
     display: flex;
@@ -236,18 +235,16 @@ section {
     &:hover {
         background-color: #d7feff;
     }
-    &:hover #card__heart--unhover {
-        display: none;
-    }
-    &:hover #card__heart--hover {
-        display: block;
-    }
 }
 .card__heart-icon img {
     width: 50%;
-}
-#card__heart--hover {
-    display: none;
+    filter: invert(84%) sepia(47%) saturate(3035%)
+    hue-rotate(151deg) brightness(106%) contrast(108%);
+
+    &:hover {
+        filter: invert(93%) sepia(3%) saturate(5966%)
+        hue-rotate(164deg) brightness(102%) contrast(111%);
+    }
 }
 .card__info {
     font-size: 14px;
@@ -255,7 +252,7 @@ section {
 }
 
 /* 사진첩 */
-#album {
+.album {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -281,6 +278,7 @@ section {
 }
 .album__group img {
     width: 250px;
+    height: 100%;
     object-fit: cover;
     border-radius: 20px;
     transition: 0.3s;
@@ -299,7 +297,7 @@ section {
 }
 
 /* 한마디 */
-#comment {
+.comment {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -308,13 +306,13 @@ section {
     border-radius: 20px;
     background-color: #b3fcff;
 }
-#comment p {
+.comment p {
     color: #333;
     font-size: 14px;
 }
 
 /* footer */
-#footer {
+.footer {
     padding: 15px 0;
     background-color: #deffd1;
     text-align: center;
