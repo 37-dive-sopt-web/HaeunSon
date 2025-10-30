@@ -24,7 +24,7 @@ const roleModalSelect = document.getElementById('modal-role');
 const codeReviewGroupModalInput = document.getElementById('modal-code-review-team');
 const ageModalInput = document.getElementById('modal-age');
 
-// localStorage에서 멤버 데이터 가져오기
+// localStorage에서 멤버 데이터 가져오기 - 초기 렌더링 시 사용
 let membersData = JSON.parse(localStorage.getItem('membersData')) || [];
 
 // 열 생성 함수 - 멤버의 각 정보(이름, 영어 이름, 깃허브, ...)를 담은 td
@@ -88,6 +88,8 @@ filterForm.addEventListener('submit', (e) => {
     const codeReviewGroup = parseInt(codeReviewGroupInput.value, 10);
     const age = parseInt(ageInput.value, 10);
 
+    let membersData = JSON.parse(localStorage.getItem('membersData')) || [];
+
     const filteredTable = membersData.filter((member) => {
         // 일부만 입력해도 검색 가능하도록 includes 사용
         if(name && !member.name.includes(name)) {
@@ -124,6 +126,8 @@ filterForm.addEventListener('submit', (e) => {
 
 // 초기화 버튼 클릭 시 테이블 렌더링
 filterForm.addEventListener('reset', () => {
+    let membersData = JSON.parse(localStorage.getItem('membersData')) || [];
+    
     tableBody.innerHTML = '';
     createTable(membersData);
 })
