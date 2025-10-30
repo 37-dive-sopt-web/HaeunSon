@@ -44,11 +44,19 @@ const createRow = (obj) => {
     checkbox.value = obj.id;
     // checkbox.className = 'member-checkbox';
     tdCheckbox.appendChild(checkbox);
+    
+    // 깃허브 바로가기 주소열 생성
+    const tdA = document.createElement('td');
+    const a = document.createElement('a');
+    a.href = `https://github.com/${obj.github}`;
+    a.textContent = obj.github;
+    a.target = "_blank";
+    tdA.appendChild(a);
 
     tr.appendChild(tdCheckbox);
     tr.appendChild(createCell(obj.name));
     tr.appendChild(createCell(obj.englishName));
-    tr.appendChild(createCell(obj.github));
+    tr.appendChild(tdA);
     tr.appendChild(createCell(obj.gender));
     tr.appendChild(createCell(obj.role));
     tr.appendChild(createCell(obj.codeReviewGroup));
