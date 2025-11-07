@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
+import Game from "../components/Game";
+import Lank from "../components/Lank";
 
 const CardGamePage = () => {
   const [tab, setTab] = useState<string>("game");
@@ -9,7 +11,7 @@ const CardGamePage = () => {
     <Wrapper>
       <Header tab={tab} setTab={setTab} />
 
-      {tab === "game" ? <div>게임</div> : <div>랭킹</div>}
+      {tab === "game" ? <Game /> : <Lank />}
     </Wrapper>
   );
 };
