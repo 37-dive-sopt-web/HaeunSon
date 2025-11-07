@@ -14,10 +14,18 @@ const Header = ({ tab, setTab }: HeaderProps) => {
     <Wrapper>
       <Title>숫자 카드 짝 맞추기</Title>
       <TabList>
-        <Tab isClicked={tab === "game"} onClick={() => tabClickHandler("game")}>
+        <Tab
+          type="button"
+          isClicked={tab === "game"}
+          onClick={() => tabClickHandler("game")}
+        >
           게임
         </Tab>
-        <Tab isClicked={tab === "rank"} onClick={() => tabClickHandler("rank")}>
+        <Tab
+          type="button"
+          isClicked={tab === "rank"}
+          onClick={() => tabClickHandler("rank")}
+        >
           랭킹
         </Tab>
       </TabList>
@@ -49,7 +57,7 @@ const Tab = styled.button<{ isClicked: boolean }>`
   border: none;
   border-radius: 1rem;
   background-color: ${(props) => (props.isClicked ? "#7ec1ff" : "#add0f0")};
-  color: ${(props) => (props.isClicked ? "#ffffff" : "#686868")};
+  color: ${(props) => (props.isClicked ? "#f8f8f8" : "#686868")};
   font-weight: bold;
   cursor: pointer;
 `;
