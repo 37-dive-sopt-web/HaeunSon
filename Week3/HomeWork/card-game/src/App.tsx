@@ -1,9 +1,7 @@
+import CardGamePage from "./pages/CardGamePage";
+
 function App() {
-  return (
-    <>
-      <div>초기 세팅</div>
-    </>
-  );
+  return <CardGamePage />;
 }
 
 export default App;
