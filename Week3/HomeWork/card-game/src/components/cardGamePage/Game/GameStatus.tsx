@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import type { HistoryContent } from "../../../types/history";
+import type { Level } from "../../../types/deckInfo";
+import type { ChangeEvent } from "react";
 
 interface GameStatusProps {
+  setLevel: (value: Level) => void;
   timeLeft: string;
   matchedPair: number;
   totalPair: number;
@@ -10,14 +13,25 @@ interface GameStatusProps {
 }
 
 const GameStatus = ({
+  setLevel,
   timeLeft,
   matchedPair,
   totalPair,
   message,
   history,
 }: GameStatusProps) => {
+  const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+    const value = Number(event.target.value);
+    setLevel(value as Level);
+  };
+
   return (
     <Wrapper>
+      <Select onChange={changeHandler}>
+        <option value="1">Level 1</option>
+        <option value="2">Level 2</option>
+        <option value="3">Level 3</option>
+      </Select>
       <Progress>
         <ProgressItem>
           <h2>남은 시간</h2>
@@ -36,16 +50,15 @@ const GameStatus = ({
       </Progress>
       <Message>
         <SectionHeader>안내 메시지</SectionHeader>
-        <MessageContent>{message}</MessageContent>
+        <MessageArea>{message}</MessageArea>
       </Message>
       <History>
         <SectionHeader>최근 히스토리</SectionHeader>
-
         {history.length === 0 ? (
           <div style={{ fontSize: "0.8rem" }}>아직 뒤집은 카드가 없습니다.</div>
         ) : (
           history.map((h) => (
-            <HistoryContent key={h.id}>
+            <HistoryArea key={h.id}>
               <p>
                 {h.firstCardNum}, {h.secondCardNum}
               </p>
@@ -56,7 +69,7 @@ const GameStatus = ({
               >
                 {h.result}
               </p>
-            </HistoryContent>
+            </HistoryArea>
           ))
         )}
       </History>
@@ -75,6 +88,12 @@ const Wrapper = styled.section`
   padding: 1rem 1.5rem;
   background-color: #add0f0;
   border-radius: 1rem;
+`;
+const Select = styled.select`
+  background-color: #cfe8ff;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
 `;
 const Progress = styled.section`
   display: grid;
@@ -106,7 +125,7 @@ const Message = styled.section`
   flex-direction: column;
   gap: 0.5rem;
 `;
-const MessageContent = styled.div`
+const MessageArea = styled.div`
   background-color: #cfe8ff;
   border-radius: 1rem;
   padding: 1rem;
@@ -115,7 +134,7 @@ const MessageContent = styled.div`
 const History = styled(Message)`
   flex: 1;
 `;
-const HistoryContent = styled(MessageContent)`
+const HistoryArea = styled(MessageArea)`
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 1rem;

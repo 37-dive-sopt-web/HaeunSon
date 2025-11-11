@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 type GameStatus = "prepare" | "playing" | "won" | "lost";
 
 export const useCountdown = (
-  duration: number,
+  level: number,
   gameStatus: GameStatus,
   onTimerEnd: () => void
 ) => {
+  const duration = level === 1 ? 45 : level === 2 ? 60 : 100;
   const [timeLeft, setTimeLeft] = useState<number>(duration);
 
   useEffect(() => {
