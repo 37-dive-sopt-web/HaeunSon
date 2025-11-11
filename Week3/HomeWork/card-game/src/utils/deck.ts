@@ -1,4 +1,4 @@
-import type { Card, Level } from "../types/DeckInfo";
+import type { Card, Level } from "../types/deckInfo";
 
 /**
  * Fisher–Yates 셔플 함수
