@@ -7,11 +7,12 @@ import type { HistoryContent } from "../../../types/history";
 import { useCountdown } from "../../../hooks/useCountdown";
 import GameBoard from "./GameBoard";
 import GameStatus from "./GameStatus";
+import Modal from "../Modal/Modal";
 
-type GameStatus = "prepare" | "playing" | "won" | "lost";
+type Status = "prepare" | "playing" | "won" | "lost";
 interface RankItem {
   level: number;
-  clearTime: string;
+  clearTime: number;
   recordTime: string;
 }
 
@@ -25,7 +26,7 @@ const Game = () => {
   // 카드 게임 진행 상태 관리
   const [clickedList, setClickedList] = useState<string[]>([]);
   const [matchedList, setMatchedList] = useState<string[]>([]);
-  const [gameStatus, setGameStatus] = useState<GameStatus>("prepare");
+  const [gameStatus, setGameStatus] = useState<Status>("prepare");
   const [isChecking, setIsChecking] = useState<boolean>(false);
 
   // Progress 메세지
@@ -42,6 +43,9 @@ const Game = () => {
 
   // 로컬 스토리지 저장을 위한 값
   const startTimeRef = useRef<number>(0);
+
+  // 모달 관리
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   // 초기화 로직
   const resetState = () => {
@@ -152,8 +156,9 @@ const Game = () => {
     if (gameStatus === "won" || gameStatus === "lost") {
       if (gameStatus === "won") {
         const endTime = performance.now();
-        const rst = ((endTime - startTimeRef.current) / 1000).toFixed(2);
-        console.log("rst", rst);
+        const rst =
+          Math.round(((endTime - startTimeRef.current) / 1000) * 100) / 100;
+        console.log("rst", endTime - startTimeRef.current);
 
         const newRankItem: RankItem = {
           level: deckInfo.level,
@@ -161,21 +166,29 @@ const Game = () => {
           recordTime: new Date().toISOString(),
         };
 
+        // 성공 기록 localStroage에 저장
         try {
           const prevRank = localStorage.getItem("rank");
           const prevRankArr: RankItem[] = prevRank ? JSON.parse(prevRank) : [];
 
           const updatedRankArr = [newRankItem, ...prevRankArr];
-          updatedRankArr.sort((a, b) => b.level - a.level);
+          updatedRankArr.sort((a, b) => {
+            if (a.level === b.level) {
+              return a.clearTime - b.clearTime;
+            } else {
+              return b.level - a.level;
+            }
+          });
 
           localStorage.setItem("rank", JSON.stringify(updatedRankArr));
         } catch (error) {
           console.error("랭킹 저장 오류 발생: ", error);
         }
-
-        alert("축하합니다. 성공입니다.");
+        setOpenModal(true);
+        setTimeout(() => setOpenModal(false), 3000);
       } else {
-        alert("시간이 만료되어 실패했습니다.");
+        setOpenModal(true);
+        setTimeout(() => setOpenModal(false), 3000);
       }
       const timerId = setTimeout(() => {
         generateDeck(deckInfo.level);
@@ -203,6 +216,7 @@ const Game = () => {
         message={message}
         history={history}
       />
+      <Modal openModal={openModal} gameStatus={gameStatus} />
     </Wrapper>
   );
 };
