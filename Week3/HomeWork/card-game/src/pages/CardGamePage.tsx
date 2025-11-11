@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "@emotion/styled";
-import Header from "../components/Header";
-import Game from "../components/Game";
-import Lank from "../components/Lank";
+import Header from "../components/cardGamePage/Header";
+import Game from "../components/cardGamePage/Game/Game";
+import Lank from "../components/cardGamePage/Lank/Lank";
 
 const CardGamePage = () => {
   const [tab, setTab] = useState<string>("game");
