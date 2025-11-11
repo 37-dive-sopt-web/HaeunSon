@@ -84,15 +84,14 @@ const Game = () => {
     if (gameStatus === "prepare") {
       setGameStatus("playing");
       startTimeRef.current = performance.now();
-      console.log("시작 시간: ", startTimeRef.current);
     }
 
-    if (
-      isChecking ||
-      clickedList.length === 2 ||
-      clickedList.includes(clickedId) ||
-      matchedList.includes(clickedId)
-    ) {
+    if (isChecking || clickedList.length === 2) {
+      setMessage("잠시만 기다려주세요.");
+      return;
+    }
+
+    if (clickedList.includes(clickedId) || matchedList.includes(clickedId)) {
       setMessage("이미 선택한 카드입니다.");
       return;
     }
@@ -139,7 +138,6 @@ const Game = () => {
       };
       setHistory((prev) => [newHistory, ...prev]);
       setTimeout(() => {
-        setMessage("잠시만 기다려주세요.");
         setClickedList([]);
         setIsChecking(false);
       }, 500);
@@ -194,6 +192,7 @@ const Game = () => {
         setOpenModal(true);
         setTimeout(() => setOpenModal(false), 3000);
       } else {
+        // gameStatus가 lost일 때
         setOpenModal(true);
         setTimeout(() => setOpenModal(false), 3000);
       }
