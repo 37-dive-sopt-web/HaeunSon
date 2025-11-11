@@ -2,17 +2,13 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import styled from "@emotion/styled";
 
 import { buildDeck } from "../../../utils/deck";
-import type { DeckInfo, Level } from "../../../types/DeckInfo";
+import type { DeckInfo, Level } from "../../../types/deckInfo";
+import type { HistoryContent } from "../../../types/history";
 import { useCountdown } from "../../../hooks/useCountdown";
-import CommonHeader from "../../common/CommonHeader";
+import GameBoard from "./GameBoard";
+import GameStatus from "./GameStatus";
 
 type GameStatus = "prepare" | "playing" | "won" | "lost";
-interface HistoryContent {
-  id: number;
-  firstCardNum: number;
-  secondCardNum: number;
-  result: "성공" | "실패";
-}
 interface RankItem {
   level: number;
   clearTime: string;
@@ -74,7 +70,7 @@ const Game = () => {
   }, [generateDeck]);
 
   // 카드 onClick 함수
-  const CardClickHandler = (clickedId: string) => {
+  const cardClickHandler = (clickedId: string) => {
     if (gameStatus === "prepare") {
       setGameStatus("playing");
       startTimeRef.current = performance.now();
@@ -193,79 +189,20 @@ const Game = () => {
 
   return (
     <Wrapper>
-      <GameBoard>
-        <CommonHeader
-          title="게임 보드"
-          buttonName="게임 리셋"
-          onClick={resetState}
-        />
-        {/* clickedList, matchedList, isVisible, isMatched, onClick  */}
-        <CardGridLayout>
-          {deckInfo.data?.map((card) => {
-            const isClicked = clickedList.includes(card.id);
-            const isMatched = matchedList.includes(card.id);
-            const isVisible = isClicked || isMatched;
-
-            return (
-              <CardItem
-                key={card.id}
-                isVisble={isVisible}
-                isMatched={isMatched}
-                onClick={() => CardClickHandler(card.id)}
-              >
-                {isVisible ? card.value : "?"}
-              </CardItem>
-            );
-          })}
-        </CardGridLayout>
-      </GameBoard>
-      {/* timeLeft, matchedPair, totalPair, message, history */}
-      <GameStatusSection>
-        <Progress>
-          <ProgressItem>
-            <h2>남은 시간</h2>
-            <p>{timeLeft}</p>
-          </ProgressItem>
-          <ProgressItem>
-            <h2>성공한 짝</h2>
-            <p>
-              {matchedPair} / {totalPair}
-            </p>
-          </ProgressItem>
-          <ProgressItem>
-            <h2>남은 짝</h2>
-            <p>{totalPair - matchedPair}</p>
-          </ProgressItem>
-        </Progress>
-        <Message>
-          <SectionHeader>안내 메시지</SectionHeader>
-          <MessageContent>{message}</MessageContent>
-        </Message>
-        <History>
-          <SectionHeader>최근 히스토리</SectionHeader>
-
-          {history.length === 0 ? (
-            <div style={{ fontSize: "0.8rem" }}>
-              아직 뒤집은 카드가 없습니다.
-            </div>
-          ) : (
-            history.map((h) => (
-              <HistoryContent key={h.id}>
-                <p>
-                  {h.firstCardNum}, {h.secondCardNum}
-                </p>
-                <p
-                  style={{
-                    color: h.result === "성공" ? "#65d346" : "#f17373",
-                  }}
-                >
-                  {h.result}
-                </p>
-              </HistoryContent>
-            ))
-          )}
-        </History>
-      </GameStatusSection>
+      <GameBoard
+        resetState={resetState}
+        deckInfo={deckInfo}
+        clickedList={clickedList}
+        matchedList={matchedList}
+        cardClickHandler={cardClickHandler}
+      />
+      <GameStatus
+        timeLeft={timeLeft}
+        matchedPair={matchedPair}
+        totalPair={totalPair}
+        message={message}
+        history={history}
+      />
     </Wrapper>
   );
 };
@@ -280,86 +217,4 @@ const Wrapper = styled.main`
   padding: 1rem 1.5rem;
   background-color: #cfe8ff;
   border-radius: 1rem;
-`;
-const GameBoard = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 1rem 1.5rem;
-`;
-const CardGridLayout = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, auto); // level에 따라 동적으로 하기
-  gap: 0.3rem;
-  padding: 0 4rem;
-`;
-const CardItem = styled.div<{ isVisble: boolean; isMatched: boolean }>`
-  display: grid;
-  place-items: center;
-  background-color: ${(props) =>
-    props.isVisble ? (props.isMatched ? "#4fa8fc" : "none") : "#7ec1ff"};
-  border: ${(props) =>
-    props.isVisble
-      ? props.isMatched
-        ? "none"
-        : "1px solid #4fa8fc"
-      : "1px solid #4fa8fc"};
-  border-radius: 0.4rem;
-  aspect-ratio: 1;
-  box-sizing: border-box;
-`;
-
-const GameStatusSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: 100%;
-  box-sizing: border-box;
-  padding: 1rem 1.5rem;
-  background-color: #add0f0;
-  border-radius: 1rem;
-`;
-const Progress = styled.section`
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 0.5rem;
-`;
-const ProgressItem = styled.div`
-  place-content: center;
-  padding: 1rem;
-  background-color: #cfe8ff;
-  border-radius: 1rem;
-  text-align: center;
-
-  h2 {
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-  }
-  p {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-`;
-const SectionHeader = styled.p`
-  font-size: 1rem;
-  font-weight: bold;
-`;
-const Message = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
-const MessageContent = styled.div`
-  background-color: #cfe8ff;
-  border-radius: 1rem;
-  padding: 1rem;
-  font-size: 0.8rem;
-`;
-const History = styled(Message)`
-  flex: 1;
-`;
-const HistoryContent = styled(MessageContent)`
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
 `;
