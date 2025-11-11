@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import CommonHeader from "./common/CommonHeader";
+import CommonHeader from "../../common/CommonHeader";
 
 interface RankItem {
   level: number;

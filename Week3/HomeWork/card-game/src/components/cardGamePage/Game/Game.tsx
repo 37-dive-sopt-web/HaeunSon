@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import styled from "@emotion/styled";
 
-import { buildDeck } from "../utils/deck";
-import type { DeckInfo, Level } from "../types/DeckInfo";
-import { useCountdown } from "../hooks/useCountdown";
-import CommonHeader from "./common/CommonHeader";
+import { buildDeck } from "../../../utils/deck";
+import type { DeckInfo, Level } from "../../../types/DeckInfo";
+import { useCountdown } from "../../../hooks/useCountdown";
+import CommonHeader from "../../common/CommonHeader";
 
 type GameStatus = "prepare" | "playing" | "won" | "lost";
 interface HistoryContent {
@@ -199,6 +199,7 @@ const Game = () => {
           buttonName="게임 리셋"
           onClick={resetState}
         />
+        {/* clickedList, matchedList, isVisible, isMatched, onClick  */}
         <CardGridLayout>
           {deckInfo.data?.map((card) => {
             const isClicked = clickedList.includes(card.id);
@@ -218,6 +219,7 @@ const Game = () => {
           })}
         </CardGridLayout>
       </GameBoard>
+      {/* timeLeft, matchedPair, totalPair, message, history */}
       <GameStatusSection>
         <Progress>
           <ProgressItem>
