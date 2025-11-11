@@ -8,6 +8,7 @@ import { useCountdown } from "../../../hooks/useCountdown";
 import GameBoard from "./GameBoard";
 import GameStatus from "./GameStatus";
 import Modal from "../Modal/Modal";
+import formatDate from "../../../utils/formatDate";
 
 type Status = "prepare" | "playing" | "won" | "lost";
 interface RankItem {
@@ -23,6 +24,9 @@ const Game = () => {
     level: 1,
   });
 
+  // 카드 레벨
+  const [level, setLevel] = useState<Level>(1);
+
   // 카드 게임 진행 상태 관리
   const [clickedList, setClickedList] = useState<string[]>([]);
   const [matchedList, setMatchedList] = useState<string[]>([]);
@@ -30,7 +34,7 @@ const Game = () => {
   const [isChecking, setIsChecking] = useState<boolean>(false);
 
   // Progress 메세지
-  const timeLeft = useCountdown(45, gameStatus, () => setGameStatus("lost"));
+  const timeLeft = useCountdown(level, gameStatus, () => setGameStatus("lost"));
   const totalPair = deckInfo.data !== null ? deckInfo.data?.length / 2 : 0;
   const matchedPair = matchedList.length / 2;
 
@@ -43,6 +47,7 @@ const Game = () => {
 
   // 로컬 스토리지 저장을 위한 값
   const startTimeRef = useRef<number>(0);
+  const [totalTime, setTotalTime] = useState<number>(0);
 
   // 모달 관리
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -69,15 +74,17 @@ const Game = () => {
     [deckInfo.level]
   );
 
+  // 카드 덱 생성
   useEffect(() => {
-    generateDeck(1);
-  }, [generateDeck]);
+    generateDeck(level);
+  }, [level, generateDeck]);
 
   // 카드 onClick 함수
   const cardClickHandler = (clickedId: string) => {
     if (gameStatus === "prepare") {
       setGameStatus("playing");
       startTimeRef.current = performance.now();
+      console.log("시작 시간: ", startTimeRef.current);
     }
 
     if (
@@ -158,12 +165,12 @@ const Game = () => {
         const endTime = performance.now();
         const rst =
           Math.round(((endTime - startTimeRef.current) / 1000) * 100) / 100;
-        console.log("rst", endTime - startTimeRef.current);
+        setTotalTime(rst);
 
         const newRankItem: RankItem = {
           level: deckInfo.level,
           clearTime: rst,
-          recordTime: new Date().toISOString(),
+          recordTime: formatDate(new Date()),
         };
 
         // 성공 기록 localStroage에 저장
@@ -204,19 +211,26 @@ const Game = () => {
     <Wrapper>
       <GameBoard
         resetState={resetState}
+        level={level}
         deckInfo={deckInfo}
         clickedList={clickedList}
         matchedList={matchedList}
         cardClickHandler={cardClickHandler}
       />
       <GameStatus
+        setLevel={setLevel}
         timeLeft={timeLeft}
         matchedPair={matchedPair}
         totalPair={totalPair}
         message={message}
         history={history}
       />
-      <Modal openModal={openModal} gameStatus={gameStatus} />
+      <Modal
+        openModal={openModal}
+        gameStatus={gameStatus}
+        level={level}
+        totalTime={totalTime}
+      />
     </Wrapper>
   );
 };
