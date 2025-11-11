@@ -4,9 +4,11 @@ type Status = "prepare" | "playing" | "won" | "lost";
 
 interface ModalContentProps {
   gameStatus: Status;
+  level: number;
+  totalTime: number;
 }
 
-const ModalContent = ({ gameStatus }: ModalContentProps) => {
+const ModalContent = ({ gameStatus, level, totalTime }: ModalContentProps) => {
   return (
     <>
       <Overlay />
@@ -14,7 +16,9 @@ const ModalContent = ({ gameStatus }: ModalContentProps) => {
         {gameStatus === "won" ? (
           <>
             <Top>축하해요!!!</Top>
-            <Middle>Level 1을 18.99초 만에 클리어했어요</Middle>
+            <Middle>
+              Level {level}을 {totalTime}초 만에 클리어했어요
+            </Middle>
             <Bottom>3초 후 자동으로 새 게임을 시작해요</Bottom>
           </>
         ) : (

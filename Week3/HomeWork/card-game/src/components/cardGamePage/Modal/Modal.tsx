@@ -6,14 +6,23 @@ type Status = "prepare" | "playing" | "won" | "lost";
 interface ModalProps {
   openModal: boolean;
   gameStatus: Status;
+  level: number;
+  totalTime: number;
 }
 
-const Modal = ({ openModal, gameStatus }: ModalProps) => {
+const Modal = ({ openModal, gameStatus, level, totalTime }: ModalProps) => {
   return (
-    <div>
+    <>
       {openModal &&
-        createPortal(<ModalContent gameStatus={gameStatus} />, document.body)}
-    </div>
+        createPortal(
+          <ModalContent
+            gameStatus={gameStatus}
+            level={level}
+            totalTime={totalTime}
+          />,
+          document.body
+        )}
+    </>
   );
 };
 
