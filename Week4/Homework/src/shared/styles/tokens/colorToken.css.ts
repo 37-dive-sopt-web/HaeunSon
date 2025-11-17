@@ -1,6 +1,6 @@
 export const colorToken = {
   primary: {
-    50: "#F6F3FF",
+    50: "#dfdfdfff",
     100: "#C6B1E6",
     200: "#704DE4",
     300: "#632DB8",
