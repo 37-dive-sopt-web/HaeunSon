@@ -1,7 +1,14 @@
-import "./App.css";
+import "./styles/reset.css.ts";
+import "./styles/global.css.ts";
+import AppRouterProvider from "./providers/AppRouterProvider";
+import AppThemeProvider from "./providers/AppThemeProvider";
 
 function App() {
-  return <></>;
+  return (
+    <AppThemeProvider>
+      <AppRouterProvider />
+    </AppThemeProvider>
+  );
 }
 
 export default App;
