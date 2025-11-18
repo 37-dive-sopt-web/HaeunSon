@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useNavigate } from "react-router";
 import {
   validateUsername,
   validatePassword,
@@ -7,6 +8,7 @@ import {
   validateEmail,
   validateAge,
 } from "@/entities/user/model/validation";
+import { join } from "@features/join/api/join";
 import type { FormData } from "./types";
 
 const formSteps = [
@@ -79,12 +81,33 @@ const initialFormData: FormData = {
 };
 
 export const useJoinForm = () => {
+  const navigate = useNavigate();
   const [curStep, setCurStep] = useState(0);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [error, setError] = useState("");
 
   const curStepInfo = formSteps[curStep];
   const curInputs = curStepInfo.inputs;
+
+  const joinHandler = async (data: FormData) => {
+    const userInfo = {
+      username: data.username,
+      password: data.password,
+      name: data.name,
+      email: data.email,
+      age: Number(data.age),
+    };
+
+    try {
+      await join(userInfo);
+      setFormData(initialFormData);
+      setCurStep(0);
+      setError("");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -120,8 +143,7 @@ export const useJoinForm = () => {
 
     const isLastStep = curStep === formSteps.length - 1;
     if (isLastStep) {
-      console.log("최종 폼 데이터: ", formData);
-      alert("회원가입 요청");
+      joinHandler(formData);
     } else {
       setCurStep((prev) => prev + 1);
     }
