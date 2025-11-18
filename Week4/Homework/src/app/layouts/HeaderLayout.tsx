@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import { Outlet, NavLink } from "react-router";
+import { Outlet, NavLink, useNavigate } from "react-router";
 import { getUser } from "@/features/my-page/api/getUser";
 import * as s from "./HeaderLayout.css";
 import type { User } from "@/entities/user/model/user";
 
 const HeaderLayout = () => {
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("userId");
+    navigate("/login");
+  };
 
   useEffect(() => {
     const axiosUser = async () => {
       try {
         const userInfo = await getUser();
-        console.log("유저 정보", userInfo);
         setUser(userInfo);
       } catch (error) {
         console.error(error);
@@ -46,7 +51,7 @@ const HeaderLayout = () => {
           >
             회원 조회
           </NavLink>
-          <button type="button" className={s.menu}>
+          <button type="button" className={s.menu} onClick={logoutHandler}>
             로그아웃
           </button>
           <button type="button" className={s.menu}>
@@ -54,7 +59,6 @@ const HeaderLayout = () => {
           </button>
         </div>
       </header>
-      <div>헤더레이아웃</div>
 
       <main>
         <Outlet context={{ user }} />
