@@ -6,3 +6,8 @@ export const layout = style({
   flexDirection: "column",
   gap: vars.space.s24,
 });
+
+export const error = style({
+  color: vars.color.etc.red,
+  marginBottom: vars.space.s8,
+});
