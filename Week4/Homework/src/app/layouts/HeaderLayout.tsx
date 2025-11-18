@@ -3,9 +3,11 @@ import { Outlet, NavLink, useNavigate } from "react-router";
 import { getUser } from "@/features/my-page/api/getUser";
 import * as s from "./HeaderLayout.css";
 import type { User } from "@/entities/user/model/user";
+import DeleteAccountModal from "@/features/user/delete-account/ui/DeleteAccountModal";
 
 const HeaderLayout = () => {
   const [user, setUser] = useState<User | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -55,11 +57,16 @@ const HeaderLayout = () => {
           <button type="button" className={s.menu} onClick={logoutHandler}>
             로그아웃
           </button>
-          <button type="button" className={s.menu}>
+          <button
+            type="button"
+            className={s.menu}
+            onClick={() => setIsOpen(true)}
+          >
             회원탈퇴
           </button>
         </div>
       </header>
+      <DeleteAccountModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 
       <main>
         <Outlet context={{ user }} />
