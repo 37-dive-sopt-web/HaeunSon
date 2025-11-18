@@ -1,5 +1,5 @@
 import FormHeader from "@/shared/ui/form-header/FormHeader";
-import LoginForm from "@/widgets/login/LoginForm";
+import LoginForm from "@/features/login/ui/LoginForm";
 import { layout } from "./LoginPage.css";
 
 const LoginPage = () => {

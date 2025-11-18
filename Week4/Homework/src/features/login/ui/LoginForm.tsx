@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
 import Input from "@/shared/ui/input/Input";
 import Button from "@/shared/ui/button/Button";
@@ -17,7 +17,8 @@ const LoginForm = () => {
     navigate("/join");
   };
 
-  const loginHandler = async () => {
+  const loginHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const userInfo = { username, password };
 
     try {
@@ -35,7 +36,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <form className={s.layout}>
+      <form className={s.layout} onSubmit={loginHandler}>
         <Input
           label="아이디"
           type="text"
@@ -49,12 +50,8 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div>
-          {error && (
-            <div className={s.error}>
-              아이디 또는 비밀번호가 올바르지 않습니다.
-            </div>
-          )}
-          <Button navigate={false} onClick={loginHandler} disabled={disabled}>
+          {error && <div className={s.error}>{error}</div>}
+          <Button navigate={false} disabled={disabled}>
             로그인
           </Button>
         </div>
