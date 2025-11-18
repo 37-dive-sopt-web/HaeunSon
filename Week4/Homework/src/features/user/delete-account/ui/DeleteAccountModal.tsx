@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router";
 import { Modal } from "@/shared/ui/modal/Modal";
 import * as s from "./DeleteAccountModal.css";
+import { deleteUser } from "../api/deleteUser";
 
 interface DeleteAccountModalProps {
   isOpen: boolean;
@@ -7,6 +9,21 @@ interface DeleteAccountModalProps {
 }
 
 const DeleteAccountModal = ({ isOpen, onClose }: DeleteAccountModalProps) => {
+  const navigate = useNavigate();
+
+  const deleteHandler = async () => {
+    try {
+      await deleteUser();
+      localStorage.removeItem("userId");
+      alert("회원 탈퇴가 완료되었어요");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      alert("회원 탈퇴를 실패했어요");
+      throw error;
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <section className={s.layout}>
@@ -26,7 +43,7 @@ const DeleteAccountModal = ({ isOpen, onClose }: DeleteAccountModalProps) => {
           <button
             className={s.button({ btn: "delete" })}
             type="button"
-            onClick={onClose}
+            onClick={deleteHandler}
           >
             회원탈퇴
           </button>
