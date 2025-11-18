@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Input from "@/shared/ui/input/Input";
 import Button from "@/shared/ui/button/Button";
 import * as s from "./LoginForm.css";
@@ -10,6 +11,7 @@ const LoginForm = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPwd, setShowPwd] = useState(false);
 
   const disabled = username.trim() === "" || password.trim() === "";
 
@@ -34,6 +36,10 @@ const LoginForm = () => {
     }
   };
 
+  const toggleShowPwd = () => {
+    setShowPwd(!showPwd);
+  };
+
   return (
     <>
       <form className={s.layout} onSubmit={loginHandler}>
@@ -43,12 +49,17 @@ const LoginForm = () => {
           placeholder="아이디를 입력해 주세요"
           onChange={(e) => setUserName(e.target.value)}
         />
-        <Input
-          label="비밀번호"
-          type="text"
-          placeholder="비밀번호를 입력해 주세요"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div className={s.wrapper}>
+          <Input
+            label="비밀번호"
+            type={showPwd ? "text" : "password"}
+            placeholder="비밀번호를 입력해 주세요"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <i className={s.icon} onClick={toggleShowPwd}>
+            {showPwd ? <FaEyeSlash /> : <FaEye />}
+          </i>
+        </div>
         <div>
           {error && <div className={s.error}>{error}</div>}
           <Button navigate={false} disabled={disabled}>
