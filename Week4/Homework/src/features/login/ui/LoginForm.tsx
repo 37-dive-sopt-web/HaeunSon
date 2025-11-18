@@ -26,7 +26,7 @@ const LoginForm = () => {
       setUserName("");
       setPassword("");
       setError("");
-      navigate("/myPage");
+      navigate("/mypage");
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
