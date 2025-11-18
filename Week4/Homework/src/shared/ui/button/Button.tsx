@@ -11,7 +11,7 @@ const Button = ({ onClick, disabled, navigate, children }: ButtonProps) => {
   return (
     <button
       className={button({ color: navigate ? "navigate" : "default" })}
-      type="button"
+      type="submit"
       onClick={onClick}
       disabled={disabled}
     >
