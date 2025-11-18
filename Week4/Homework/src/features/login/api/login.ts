@@ -11,7 +11,7 @@ interface Response {
   message: string;
 }
 
-const HANDLED_ERROR_CODES = [401, 403, 404];
+const HANDLED_ERROR_CODES = [400, 401, 403, 404];
 
 export const login = async (data: Request) => {
   try {
