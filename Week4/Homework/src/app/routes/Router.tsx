@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import RootLayout from "../layouts/RootLayout";
+import HeaderLayout from "../layouts/HeaderLayout";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,28 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "myPage",
-        async lazy() {
-          const { default: MyPage } = await import("@pages/my-page/ui/MyPage");
-          return { Component: MyPage };
-        },
+        path: "mypage",
+        element: <HeaderLayout />,
+        children: [
+          {
+            index: true,
+            async lazy() {
+              const { default: MyPage } = await import(
+                "@pages/my-page/ui/MyPage"
+              );
+              return { Component: MyPage };
+            },
+          },
+          {
+            path: "members",
+            async lazy() {
+              const { default: MemberPage } = await import(
+                "@pages/my-page/ui/MemberPage"
+              );
+              return { Component: MemberPage };
+            },
+          },
+        ],
       },
     ],
   },
