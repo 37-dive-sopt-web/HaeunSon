@@ -16,7 +16,8 @@ const HeaderLayout = () => {
   useEffect(() => {
     const axiosUser = async () => {
       try {
-        const userInfo = await getUser();
+        const id = localStorage.getItem("userId") || "";
+        const userInfo = await getUser(id);
         setUser(userInfo);
       } catch (error) {
         console.error(error);
