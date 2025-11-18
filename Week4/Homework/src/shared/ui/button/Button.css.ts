@@ -14,16 +14,14 @@ export const button = recipe({
       default: {
         backgroundColor: vars.color.primary[300],
         color: vars.color.grayscale.white,
+        transition: "background-color 0.25s ease",
         ":disabled": {
           backgroundColor: vars.color.primary[100],
-          cursor: "not-allowed",
+          cursor: "inherit",
+          pointerEvents: "none",
         },
         ":hover": {
           backgroundColor: vars.color.primary[200],
-          transition: "background-color 0.25s ease",
-        },
-        ":disabled:hover": {
-          backgroundColor: vars.color.primary[100],
         },
       },
       navigate: {
