@@ -1,0 +1,280 @@
+/* color */
+/* #d499b9 */
+/* #9055a2 */
+/* #2e294e */
+/* #011638 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(211, 211, 211);
+}
+body {
+    background-color: #2e294e;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 4dvh;
+    background-color: #011638;
+    border-radius: 10px;
+    padding: 4dvh 3dvw;
+}
+button {
+    background: inherit;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    cursor: pointer;
+}
+a {
+    text-decoration: none;
+    font-size: 13px;
+    color: #d499b9;
+}
+
+/* header */
+.header {
+    display: flex;
+    background-color: #011638;
+    padding: 3dvh 0;
+}
+.header > * {
+    flex: 1;
+    text-align: center;
+    align-self: center;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.header__right {
+    font-size: 0.6rem;
+}
+
+/* main */
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 3dvh;
+    padding: 2dvh 12dvw;
+}
+
+
+/* filter section */
+.filter__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2dvh;
+}
+.filter__group {
+    display: grid;
+    grid-template-columns: (6, 1fr);
+    grid-template-areas: 
+        "name         name         name         name         name         name"
+        "english-name english-name english-name english-name english-name english-name"
+        "github       github       gender       gender       role         role"
+        "team         team         team         age          age          age";
+    row-gap: 2dvh;
+    column-gap: 2dvw;
+}
+.filter__item--name {
+    grid-area: name;
+}
+.filter__item--english-name {
+    grid-area: english-name;
+}
+.filter__item--github {
+    grid-area: github;
+}
+.filter__item--gender {
+    grid-area: gender;
+}
+.filter__item--role {
+    grid-area: role;
+}
+.filter__item--team {
+    grid-area: team;
+}
+.filter__item--age {
+    grid-area: age;
+}
+.filter__item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+}
+.filter__item > label {
+    min-width: auto;
+    font-size: 13px;
+    align-self: center;
+}
+.filter__input {
+    width: 100%;
+    padding: 1dvh 0;
+    background-color: #011638;
+    border-width: 0 0 1px;
+    border-color: #4b4381d1;
+    outline: none;
+
+    &::placeholder {
+        color: #a297e687;
+    }
+}
+.filter__select {
+    background-color: #011638;
+    border-width: 0 0 1px;
+    border-color: #4b4381d1;
+    outline: none;
+    color: #a297e687;
+}
+.filter__actions {
+    display: flex;
+    gap: 10px;
+}
+.filter__button {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: #d499b9;
+    color: #2e294e;
+}
+
+/* table section */
+.part-list__header {
+    display: flex;
+    justify-content: space-between;
+}
+.part-list__actions {
+    display: flex;
+    gap: 10px;
+}
+.part-list__button {
+    background-color: #d499b9;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #d499b9;
+    color: #2e294e;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+thead {
+    background-color: #d499b9;
+    text-align: left;
+}
+tr {
+    border-bottom: 1px solid #4b4381d1;
+}
+th {
+    color: #2e294e;
+}
+th, td {
+    padding: 10px 5px;
+    font-size: 13px;
+}
+
+/* modal */
+.dialog {
+    width: 50dvw;
+    padding: 20px;
+    margin: auto;
+    flex-direction: column;
+    background-color: #2e294e;
+    border: none;
+    border-radius: 20px;
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+.dialog__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3dvh;
+}
+#close-btn {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+/* modal - form section */
+.modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2dvh;
+}
+.modal__group {
+    display: grid;
+    grid-template-columns: (2, 1fr);
+    grid-template-areas: 
+        "name         name"
+        "english-name english-name"
+        "github       github"
+        "gender       role"
+        "team         age";
+    row-gap: 4dvh;
+    column-gap: 2dvw;
+}
+.modal__item--name {
+    grid-area: name;
+}
+.modal__item--english-name {
+    grid-area: english-name;
+}
+.modal__item--github {
+    grid-area: github;
+}
+.modal__item--gender {
+    grid-area: gender;
+}
+.modal__item--role {
+    grid-area: role;
+}
+.modal__item--team {
+    grid-area: team;
+}
+.modal__item--age {
+    grid-area: age;
+}
+.modal__item {
+    display: grid;
+    gap: 5px;
+}
+.modal__item > label {
+    min-width: auto;
+    font-size: 13px;
+    align-self: center;
+}
+.modal__input {
+    width: 100%;
+    padding: 1dvh 0;
+    background-color: #2e294e;
+    border-width: 0 0 1px;
+    border-color: #6a629dd1;
+    outline: none;
+
+    &::placeholder {
+        color: #beb6f1ae;
+    }
+}
+.modal__select {
+    padding: 1dvh 0;
+    background-color: #2e294e;
+    border-width: 0 0 1px;
+    border-color: #6a629dd1;
+    outline: none;
+    color: #beb6f1ae;
+}
+.modal__button--submit {
+    align-self: end;
+    width: 70px;
+    margin-top: 2dvh;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: #d499b9;
+    color: #2e294e;
+}
